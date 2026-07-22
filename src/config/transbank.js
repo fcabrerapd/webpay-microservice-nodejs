@@ -2,7 +2,9 @@ import pkg from "transbank-sdk";
 
 const { WebpayPlus, Options, IntegrationCommerceCodes, IntegrationApiKeys, Environment } = pkg;
 
-const environment = Environment.Integration;
+const environment = process.env.TBK_ENVIRONMENT === 'production'
+  ? Environment.Production
+  : Environment.Integration;
 const commerceCode = process.env.TBK_CC || IntegrationCommerceCodes.WEBPAY_PLUS;
 
 const apiKey = process.env.TBK_API_KEY || IntegrationApiKeys.WEBPAY;
